@@ -11,9 +11,12 @@ public class Player : MonoBehaviour
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
+    Animator anim;
 
     //public인 speed 변수는 unity 창에 뜬다.
-
+    void Awake() {
+        anim = GetComponent<Animator>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,11 @@ public class Player : MonoBehaviour
         transform.position = curPos + nextPos;
         // 현재위치 + 입력받은_다음위치가 다시 현재위치가 되는 공식
 
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal")){
+            //SetInteger()는 anim이 Input 값을 받음
+            anim.SetInteger("Input", (int)h); //강제 자료형 변환
+            //SetInteger는 Animator.SetInterger에서 나옴
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
