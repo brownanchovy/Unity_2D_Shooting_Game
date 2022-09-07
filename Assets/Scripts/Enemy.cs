@@ -6,15 +6,16 @@ public class Enemy : MonoBehaviour
 {
     Animator anim;
     Rigidbody2D rigid;
-    public CircleCollider2D collider;
+    public CircleCollider2D collision;
     SpriteRenderer spriteRenderer;
+    public float enemyHealth;
     // Start is called before the first frame update
     void Awake()
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CircleCollider2D>();
+        collision = GetComponent<CircleCollider2D>();
 
     }
     void Start()
@@ -28,4 +29,8 @@ public class Enemy : MonoBehaviour
         
     }
 
+    void FixedUpdate()
+    {
+        
+    }
 }
