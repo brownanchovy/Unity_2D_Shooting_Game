@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2357009259366572739}
   - component: {fileID: 734012760164997964}
   - component: {fileID: 4046353147213287789}
+  - component: {fileID: 7192951902346408880}
   m_Layer: 0
   m_Name: Player Bullet B
   m_TagString: Untagged
@@ -96,7 +97,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -123,3 +124,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7192951902346408880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2197891437560775663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d50a1d3b8931342b3d7b2e9b6e9841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

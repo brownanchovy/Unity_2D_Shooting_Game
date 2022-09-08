@@ -15,9 +15,9 @@ public class Bullet : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if(other.gameObject.tag == "BorderBullet" )
+        if(collision.gameObject.tag == "BorderBullet" )
         {
             Destroy(gameObject);
         }

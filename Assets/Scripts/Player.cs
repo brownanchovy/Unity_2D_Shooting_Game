@@ -7,11 +7,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed;
+    public float power;
     public bool isTouchTop;
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
     Animator anim;
+    public GameObject bulletObjA;
+    public GameObject bulletObjB;
+    public float maxShootDelay;
+    public float curShootDelay;
 
     //public인 speed 변수는 unity 창에 뜬다.
     void Awake() {
@@ -25,6 +30,19 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Move();
+        Fire();
+        Reload();
+
+    }
+
+    void Reload()
+    {
+        curShootDelay += Time.deltaTime;
+    }
+
+    void Move() //캡슐화
     {
         float h = Input.GetAxisRaw("Horizontal");
         if((isTouchRight && h==1) || (isTouchLeft && h== -1)){
@@ -45,8 +63,34 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal")){
             //SetInteger()는 anim이 Input 값을 받음
             anim.SetInteger("Input", (int)h); //강제 자료형 변환
-            //SetInteger는 Animator.SetInterger에서 나옴
+            //SetInteg9er는 Animator.SetInterger에서 나옴
         }
+    }
+
+    void Fire()
+    {
+        if(!Input.GetButton("Fire1")) //GetButtonDown or Up은 누루는 그 찰나의 순간에 작동한다.
+            return; //이건 프로그래밍 스타일에 따라서 다름
+        if(curShootDelay < maxShootDelay)
+            return;
+
+        switch (power) {
+            case 1: 
+                //Power One
+                GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
+                Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+                rigid.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                break;
+            case 2:
+                break;
+        
+        }
+        //Power One
+        GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+        
+        curShootDelay = 0;
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
