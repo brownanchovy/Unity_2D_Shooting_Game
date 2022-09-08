@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &60464164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 62907835}
   m_Layer: 0
   m_Name: 2
-  m_TagString: Border
+  m_TagString: BorderBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,7 +375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &506371792
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 667825598}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Border
+  m_TagString: BorderBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,7 +756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &807819079
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 948322071}
   m_Layer: 0
   m_Name: 3
-  m_TagString: Border
+  m_TagString: BorderBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1129,7 +1129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1417010224
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1342,7 +1342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1764278064
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1495,6 +1495,10 @@ MonoBehaviour:
   isTouchBottom: 0
   isTouchLeft: 0
   isTouchRight: 0
+  bulletObjA: {fileID: 9063367849083681714, guid: f18ddc34cd813ef4b88ce70c2955bc23, type: 3}
+  bulletObjB: {fileID: 2197891437560775663, guid: 0a36fdbc5a75d684e937ae1070d3ee00, type: 3}
+  maxShootDelay: 0.2
+  curShootDelay: 0
 --- !u!212 &1776079934
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1632,7 +1636,7 @@ GameObject:
   - component: {fileID: 1794463804}
   m_Layer: 0
   m_Name: 4
-  m_TagString: Border
+  m_TagString: BorderBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1717,7 +1721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1807112569
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1843,7 +1847,7 @@ GameObject:
   - component: {fileID: 1899671016}
   m_Layer: 0
   m_Name: BorderBullet
-  m_TagString: BorderBullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -74,22 +74,34 @@ public class Player : MonoBehaviour
         if(curShootDelay < maxShootDelay)
             return;
 
-        switch (power) {
+        switch (power)
+        {
             case 1: 
                 //Power One
-                GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
+                GameObject bullet = Instantiate(bulletObjA, transform.position + Vector3.up * 0.5f, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 rigid.AddForce(Vector2.up*10, ForceMode2D.Impulse);
                 break;
             case 2:
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
+                GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.2f, transform.rotation);
+                Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
+                rigidR.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
+                rigidL.AddForce(Vector2.up*10, ForceMode2D.Impulse);
                 break;
-        
+            case 3:
+                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
+                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.2f, transform.rotation);
+                GameObject bulletCC = Instantiate(bulletObjA, transform.position, transform.rotation);
+                Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
+                rigidRR.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();
+                rigidLL.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                Rigidbody2D rigidCC = bulletCC.GetComponent<Rigidbody2D>();
+                rigidCC.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                break;
         }
-        //Power One
-        GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
-        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-        rigid.AddForce(Vector2.up*10, ForceMode2D.Impulse);
-        
         curShootDelay = 0;
     }
 
