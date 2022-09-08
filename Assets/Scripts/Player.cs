@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 //Rigidbody kenitic은 Dynamic과 다르게 충돌시 물리연산을 무시한다는 뜻이다.
 
@@ -17,10 +18,13 @@ public class Player : MonoBehaviour
     public GameObject bulletObjB;
     public float maxShootDelay;
     public float curShootDelay;
+    public float curShootDelay_Default;
+    public float maxShootDelay_Default;
 
     //public인 speed 변수는 unity 창에 뜬다.
     void Awake() {
         anim = GetComponent<Animator>();
+        power = 1;
     }
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        DefaultFire();
         Fire();
         Reload();
 
@@ -40,6 +45,7 @@ public class Player : MonoBehaviour
     void Reload()
     {
         curShootDelay += Time.deltaTime;
+        curShootDelay_Default += Time.deltaTime;
     }
 
     void Move() //캡슐화
@@ -67,13 +73,31 @@ public class Player : MonoBehaviour
         }
     }
 
+    void DefaultFire()
+    {
+        maxShootDelay_Default = 1f;
+
+        if(curShootDelay < maxShootDelay)
+        {
+            GameObject bulletL0 = Instantiate(bulletObjA, transform.position + Vector3.left * 0.5f, transform.rotation);
+            Rigidbody2D rigidL0 = bulletL0.GetComponent<Rigidbody2D>();
+            rigidL0.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+            GameObject bulletR0 = Instantiate(bulletObjA, transform.position + Vector3.right * 0.5f, transform.rotation);
+            Rigidbody2D rigidR0 = bulletR0.GetComponent<Rigidbody2D>();
+            rigidR0.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+            Thread.Sleep(1);
+            TimeDelay();
+            return;
+        }
+    }
+
     void Fire()
     {
         if(!Input.GetButton("Fire1")) //GetButtonDown or Up은 누루는 그 찰나의 순간에 작동한다.
             return; //이건 프로그래밍 스타일에 따라서 다름
         if(curShootDelay < maxShootDelay)
             return;
-
+            
         switch (power)
         {
             case 1: 
@@ -81,28 +105,32 @@ public class Player : MonoBehaviour
                 GameObject bullet = Instantiate(bulletObjA, transform.position + Vector3.up * 0.5f, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 rigid.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                maxShootDelay = 0.15f;
                 break;
             case 2:
-                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
-                GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.2f, transform.rotation);
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
+                GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.1f, transform.rotation);
                 Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
-                rigidR.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                rigidR.AddForce(Vector2.up*8, ForceMode2D.Impulse);
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
-                rigidL.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                rigidL.AddForce(Vector2.up*8, ForceMode2D.Impulse);
+                maxShootDelay = 0.3f;
                 break;
             case 3:
-                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
-                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.2f, transform.rotation);
-                GameObject bulletCC = Instantiate(bulletObjA, transform.position, transform.rotation);
+                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.25f, transform.rotation);
+                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.25f, transform.rotation);
+                GameObject bulletCC = Instantiate(bulletObjB, transform.position, transform.rotation);
                 Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
-                rigidRR.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                rigidRR.AddForce(Vector2.up*7, ForceMode2D.Impulse);
                 Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();
-                rigidLL.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                rigidLL.AddForce(Vector2.up*7, ForceMode2D.Impulse);
                 Rigidbody2D rigidCC = bulletCC.GetComponent<Rigidbody2D>();
-                rigidCC.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                rigidCC.AddForce(Vector2.up*7, ForceMode2D.Impulse);
+                maxShootDelay = 0.45f;
                 break;
         }
         curShootDelay = 0;
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -141,5 +169,10 @@ public class Player : MonoBehaviour
                     break;
             }
         }
+    }
+
+    void TimeDelay()
+    {
+        curShootDelay_Default = 0;
     }
 }
