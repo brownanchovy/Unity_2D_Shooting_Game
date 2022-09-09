@@ -18,13 +18,17 @@ public class Player : MonoBehaviour
     public GameObject bulletObjB;
     public float maxShootDelay;
     public float curShootDelay;
-    public float curShootDelay_Default;
-    public float maxShootDelay_Default;
+    //public float curShootDelay_Default;
+    //public float maxShootDelay_Default;
 
     //public인 speed 변수는 unity 창에 뜬다.
     void Awake() {
         anim = GetComponent<Animator>();
         power = 1;
+        //maxShootDelay_Default = 1f;
+
+        DefaultFire();
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -36,7 +40,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        DefaultFire();
+        //DefaultFire();
         Fire();
         Reload();
 
@@ -45,7 +49,7 @@ public class Player : MonoBehaviour
     void Reload()
     {
         curShootDelay += Time.deltaTime;
-        curShootDelay_Default += Time.deltaTime;
+        //curShootDelay_Default += Time.deltaTime;
     }
 
     void Move() //캡슐화
@@ -75,20 +79,18 @@ public class Player : MonoBehaviour
 
     void DefaultFire()
     {
-        maxShootDelay_Default = 1f;
 
-        if(curShootDelay < maxShootDelay)
-        {
+        //if(curShootDelay < maxShootDelay)
+        //{
             GameObject bulletL0 = Instantiate(bulletObjA, transform.position + Vector3.left * 0.5f, transform.rotation);
             Rigidbody2D rigidL0 = bulletL0.GetComponent<Rigidbody2D>();
             rigidL0.AddForce(Vector2.up*10, ForceMode2D.Impulse);
             GameObject bulletR0 = Instantiate(bulletObjA, transform.position + Vector3.right * 0.5f, transform.rotation);
             Rigidbody2D rigidR0 = bulletR0.GetComponent<Rigidbody2D>();
             rigidR0.AddForce(Vector2.up*10, ForceMode2D.Impulse);
-            Thread.Sleep(1);
-            TimeDelay();
-            return;
-        }
+        //}
+        //curShootDelay_Default = 0;
+        Invoke("DefaultFire", 0.5f);
     }
 
     void Fire()
@@ -98,6 +100,7 @@ public class Player : MonoBehaviour
         if(curShootDelay < maxShootDelay)
             return;
             
+        
         switch (power)
         {
             case 1: 
@@ -130,7 +133,7 @@ public class Player : MonoBehaviour
                 break;
         }
         curShootDelay = 0;
-        
+    
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -169,10 +172,5 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-    }
-
-    void TimeDelay()
-    {
-        curShootDelay_Default = 0;
     }
 }
