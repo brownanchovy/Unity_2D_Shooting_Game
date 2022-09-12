@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     public CircleCollider2D collision;
     SpriteRenderer spriteRenderer;
     public Sprite[] sprites;
-    public float enemyHealth;
     public float speed;
     public int health;
 
@@ -49,7 +48,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void ReturSprite()
+    void ReturnSprite()
     {
         spriteRenderer.sprite = sprites[0];
     }
@@ -64,7 +63,7 @@ public class Enemy : MonoBehaviour
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit(bullet.dmg);
-            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }
