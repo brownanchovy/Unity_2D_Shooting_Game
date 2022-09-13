@@ -12,13 +12,12 @@ public class Enemy : MonoBehaviour
     public float speed;
     public int health;
 
-    // Start is called before the first frame update
+    // Prefab이란 미리 만들어진 Object들을 재활용 가능한 형태로 만들어 두는 것을 의미한다.
     void Awake()
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = Vector2.down * speed;
         //collision = GetComponent<CircleCollider2D>();
     }
     void Start()
@@ -48,7 +47,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void ReturnSprite()
+    void ReturnSprite() //오타 주의
     {
         spriteRenderer.sprite = sprites[0];
     }

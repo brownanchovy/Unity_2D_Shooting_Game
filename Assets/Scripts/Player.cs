@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public bool isTouchBottom;
     public bool isTouchLeft;
     public bool isTouchRight;
-    Animator anim;
+    Animator animator;
     public GameObject bulletObjA;
     public GameObject bulletObjB;
     public float maxShootDelay;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     //public인 speed 변수는 unity 창에 뜬다.
     void Awake() {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         power = 1;
         //maxShootDelay_Default = 1f;
 
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal")){
             //SetInteger()는 anim이 Input 값을 받음
-            anim.SetInteger("Input", (int)h); //강제 자료형 변환
+            animator.SetInteger("Input", (int)h); //강제 자료형 변환
             //SetInteg9er는 Animator.SetInterger에서 나옴
         }
     }
@@ -151,6 +151,11 @@ public class Player : MonoBehaviour
                 case "4":
                     isTouchRight = true;
                     break;
+
+        if(collision.gameObject.tag == "Enemy_Bullet")
+        {
+            
+        }
             }
         }
     }

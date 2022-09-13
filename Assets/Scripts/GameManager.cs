@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public float maxSpawnDelay;
     public float curSpawnDelay;
     // Start is called before the first frame update
+    public int health;
+    
     void Start()
     {
         
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
     void SpawnEnemy()
     {
         int ranEnemy = Random.Range(0, 3);
-        int ranPoint = Random.Range(0, 5);
+        int ranPoint = Random.Range(0, 9);
         Instantiate(enemyObjects[ranEnemy], 
         spawnPoints[ranPoint].position, 
         spawnPoints[ranPoint].rotation);    
