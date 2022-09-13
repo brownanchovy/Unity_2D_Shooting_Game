@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 60464165}
   - component: {fileID: 60464164}
   - component: {fileID: 60464170}
-  - component: {fileID: 60464169}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -279,22 +278,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &60464169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60464163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2040b3d255f9c8f46a87257930cc4d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collision: {fileID: 0}
-  sprites: []
-  speed: 0
-  health: 0
 --- !u!114 &60464170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,10 +290,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2040b3d255f9c8f46a87257930cc4d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   collision: {fileID: 0}
   sprites: []
   speed: 0
   health: 50
+  bulletObjA: {fileID: 0}
+  bulletObjB: {fileID: 0}
+  degreePerSecond: 0
 --- !u!1 &62907833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5003fd3fbc37940b08a2363c8176b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   speed: 3
   power: 0
   isTouchTop: 0
@@ -1640,6 +1628,7 @@ MonoBehaviour:
   - {fileID: 827047533}
   maxSpawnDelay: 2
   curSpawnDelay: 0
+  health: 0
 --- !u!4 &2034057435
 Transform:
   m_ObjectHideFlags: 0

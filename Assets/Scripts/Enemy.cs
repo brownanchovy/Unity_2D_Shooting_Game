@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject[] enemy;
+    public GameManager gameManager;
     Animator anim;
     Rigidbody2D rigid;
     public CircleCollider2D collision;
@@ -12,6 +12,10 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     public float speed;
     public int health;
+
+    public GameObject bulletObjA;
+    public GameObject bulletObjB;
+    public float degreePerSecond;
 
 
 
@@ -22,6 +26,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         //collision = GetComponent<CircleCollider2D>();
+        EnemyFire();
     }
     void Start()
     {
@@ -29,12 +34,33 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
+    //problem, the bullet is too many
     void Update()
     {
-        //Fire();
+        
     }
 
-    
+    //problem one, the object does not rotate.
+    void SwingLeft()
+    {
+        transform.Rotate(Vector3.left * Time.deltaTime * degreePerSecond);
+    }
+
+    void SwingRight()
+    {
+        transform.Rotate(Vector3.right * Time.deltaTime * degreePerSecond);
+    }
+
+    void EnemyFire()
+    {
+        SwingLeft();
+        Invoke("SwingRight", degreePerSecond);
+        GameObject bullet = Instantiate(bulletObjA, transform.position + Vector3.down * 0.1f, transform.rotation);
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.down*10, ForceMode2D.Impulse);
+
+        Invoke("EnemyFire", 0.5f);
+    }
     /*void Fire()
     {
         //if(!Input.GetButton("Fire1")) //GetButtonDown or Up은 누루는 그 찰나의 순간에 작동한다.
