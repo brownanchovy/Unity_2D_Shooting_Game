@@ -7,6 +7,7 @@ using System.Threading;
 
 public class Player : MonoBehaviour
 {
+    public GameManager gameManager;
     public float speed;
     public float power;
     public bool isTouchTop;
@@ -133,7 +134,14 @@ public class Player : MonoBehaviour
                 break;
         }
         curShootDelay = 0;
-    
+    }
+
+    void OnCollisionEnter(Collision collision) 
+    {
+        if(collision.gameObject.tag == "Enemy_Bullet")
+        {
+            gameManager.health -- ;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -151,12 +159,7 @@ public class Player : MonoBehaviour
                 case "4":
                     isTouchRight = true;
                     break;
-
-        if(collision.gameObject.tag == "Enemy_Bullet")
-        {
-            
-        }
-            }
+                    }
         }
     }
 

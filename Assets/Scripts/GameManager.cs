@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public float curSpawnDelay;
     // Start is called before the first frame update
     public int health;
-    
+
     void Start()
     {
         

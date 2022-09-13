@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject[] enemy;
     Animator anim;
     Rigidbody2D rigid;
     public CircleCollider2D collision;
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour
     public Sprite[] sprites;
     public float speed;
     public int health;
+
+
 
     // Prefab이란 미리 만들어진 Object들을 재활용 가능한 형태로 만들어 두는 것을 의미한다.
     void Awake()
@@ -28,8 +31,50 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Fire();
     }
+
+    
+    /*void Fire()
+    {
+        //if(!Input.GetButton("Fire1")) //GetButtonDown or Up은 누루는 그 찰나의 순간에 작동한다.
+            //return; //이건 프로그래밍 스타일에 따라서 다름
+        
+        
+        switch (enemy)
+        {
+            case 0: 
+                //Power One
+                GameObject bullet = Instantiate(bulletObjA, transform.position + Vector3.up * 0.5f, transform.rotation);
+                Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+                rigid.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+                maxShootDelay = 0.15f;
+                break;
+            case 1:
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
+                GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.1f, transform.rotation);
+                Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
+                rigidR.AddForce(Vector2.up*8, ForceMode2D.Impulse);
+                Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
+                rigidL.AddForce(Vector2.up*8, ForceMode2D.Impulse);
+                maxShootDelay = 0.3f;
+                break;
+            case 2:
+                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.25f, transform.rotation);
+                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.25f, transform.rotation);
+                GameObject bulletCC = Instantiate(bulletObjB, transform.position, transform.rotation);
+                Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
+                rigidRR.AddForce(Vector2.up*7, ForceMode2D.Impulse);
+                Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();
+                rigidLL.AddForce(Vector2.up*7, ForceMode2D.Impulse);
+                Rigidbody2D rigidCC = bulletCC.GetComponent<Rigidbody2D>();
+                rigidCC.AddForce(Vector2.up*7, ForceMode2D.Impulse);
+                maxShootDelay = 0.45f;
+                break;
+        }
+        //curShootDelay = 0;
+    }
+    */
 
     void FixedUpdate()
     {
