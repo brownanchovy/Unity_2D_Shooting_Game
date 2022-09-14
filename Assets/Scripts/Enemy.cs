@@ -37,7 +37,15 @@ public class Enemy : MonoBehaviour
     //problem, the bullet is too many
     void Update()
     {
-        
+        EnemyMove();
+        SwingLeft();
+    }
+
+    void EnemyMove()
+    {
+        Vector3 curPos = transform.position; 
+        Vector3 nextPos = Vector3.down * speed * Time.deltaTime;
+        transform.position = curPos + nextPos;
     }
 
     //problem one, the object does not rotate.
@@ -48,13 +56,13 @@ public class Enemy : MonoBehaviour
 
     void SwingRight()
     {
-        transform.Rotate(Vector3.right * Time.deltaTime * degreePerSecond);
+        transform.Rotate(Vector3.down * Time.deltaTime * degreePerSecond);
     }
 
     void EnemyFire()
     {
-        SwingLeft();
-        Invoke("SwingRight", degreePerSecond);
+        //SwingLeft();
+        //Invoke("SwingRight", degreePerSecond);
         GameObject bullet = Instantiate(bulletObjA, transform.position + Vector3.down * 0.1f, transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
         rigid.AddForce(Vector2.down*10, ForceMode2D.Impulse);

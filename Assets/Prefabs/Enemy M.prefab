@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -154,7 +154,7 @@ MonoBehaviour:
   sprites:
   - {fileID: -1147401495359466748, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   - {fileID: -7844560889915226194, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
-  speed: 3
+  speed: 1
   health: 25
   bulletObjA: {fileID: 8833105626949960119, guid: 3f76899a7291315489014f07700f72cc, type: 3}
   bulletObjB: {fileID: 3534373691970443955, guid: fcd97fc13c9af1b44b663e7de36e3fc8, type: 3}
