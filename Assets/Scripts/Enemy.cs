@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         EnemyMove();
-        SwingLeft();
     }
 
     void EnemyMove()
@@ -52,22 +51,48 @@ public class Enemy : MonoBehaviour
     void SwingLeft()
     {
         transform.Rotate(Vector3.left * Time.deltaTime * degreePerSecond);
+        transform.Rotate(Vector3.down * Time.deltaTime * degreePerSecond);
     }
 
-    void SwingRight()
+    /*
+    Quaternion Angle()
     {
-        transform.Rotate(Vector3.down * Time.deltaTime * degreePerSecond);
+        Quaternion angle1 = Quaternion.identity;
+        angle1.eulerAngles = new Vector3(30, 30, 30);
+        return angle1;
+        //angle1 = transform.eulerAngles;
+    }
+    */
+
+    Vector3 vecfunct1()
+    {
+        Vector3 vec1 = new Vector3(-0.25f, -0.75f, 0);
+        return vec1;
+    }
+
+    Vector3 vecfunct2()
+    {
+        Vector3 vec2 = new Vector3(-0.25f, 0.75f, 0);
+        return vec2;
     }
 
     void EnemyFire()
     {
         //SwingLeft();
         //Invoke("SwingRight", degreePerSecond);
+        //Quaternion angle2 = Angle();
+        Vector3 angvec = vecfunct1();
+        Vector3 angvec1 = vecfunct2();
         GameObject bullet = Instantiate(bulletObjA, transform.position + Vector3.down * 0.1f, transform.rotation);
+        GameObject bullet1 = Instantiate(bulletObjA, transform.position ,transform.rotation);
+        GameObject bullet2 = Instantiate(bulletObjA, transform.position ,transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        Rigidbody2D rigid1 = bullet1.GetComponent<Rigidbody2D>();
+        Rigidbody2D rigid2 = bullet2.GetComponent<Rigidbody2D>();
         rigid.AddForce(Vector2.down*10, ForceMode2D.Impulse);
-
-        Invoke("EnemyFire", 0.5f);
+        rigid1.AddForce( angvec * 10, ForceMode2D.Impulse);
+         rigid1.AddForce( angvec1 * 10, ForceMode2D.Impulse);
+        Invoke("EnemyFire", 0.3f);
     }
     /*void Fire()
     {
