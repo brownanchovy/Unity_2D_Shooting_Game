@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         //collision = GetComponent<CircleCollider2D>();
         EnemyFire();
+        ExtraEnemyFire();
     }
     void Start()
     {
@@ -64,15 +65,17 @@ public class Enemy : MonoBehaviour
     }
     */
 
-    Vector3 vecfunct1()
+    Vector2 vecfunct1()
     {
-        Vector3 vec1 = new Vector3(-0.25f, -0.75f, 0);
+        Vector2 vec1 = new Vector2(-1, -3);
+        vec1.Normalize();
         return vec1;
     }
 
-    Vector3 vecfunct2()
+    Vector2 vecfunct2()
     {
-        Vector3 vec2 = new Vector3(-0.25f, 0.75f, 0);
+        Vector2 vec2 = new Vector2( 1, -3);
+        vec2.Normalize();
         return vec2;
     }
 
@@ -81,18 +84,23 @@ public class Enemy : MonoBehaviour
         //SwingLeft();
         //Invoke("SwingRight", degreePerSecond);
         //Quaternion angle2 = Angle();
-        Vector3 angvec = vecfunct1();
-        Vector3 angvec1 = vecfunct2();
         GameObject bullet = Instantiate(bulletObjA, transform.position + Vector3.down * 0.1f, transform.rotation);
-        GameObject bullet1 = Instantiate(bulletObjA, transform.position ,transform.rotation);
-        GameObject bullet2 = Instantiate(bulletObjA, transform.position ,transform.rotation);
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.down*10, ForceMode2D.Impulse);
+        Invoke("EnemyFire", 0.3f);
+    }
+
+    void ExtraEnemyFire()
+    {
+        Vector2 angvec = vecfunct1();
+        Vector2 angvec1 = vecfunct2();
+        GameObject bullet1 = Instantiate(bulletObjA, transform.position + Vector3.down * 0.1f , transform.rotation);
+        GameObject bullet2 = Instantiate(bulletObjB, transform.position + Vector3.down * 0.1f , transform.rotation);
         Rigidbody2D rigid1 = bullet1.GetComponent<Rigidbody2D>();
         Rigidbody2D rigid2 = bullet2.GetComponent<Rigidbody2D>();
-        rigid.AddForce(Vector2.down*10, ForceMode2D.Impulse);
-        rigid1.AddForce( angvec * 10, ForceMode2D.Impulse);
-         rigid1.AddForce( angvec1 * 10, ForceMode2D.Impulse);
-        Invoke("EnemyFire", 0.3f);
+        rigid1.AddForce( angvec * 5, ForceMode2D.Impulse);
+        rigid2.AddForce( angvec1 * 5, ForceMode2D.Impulse);
+        Invoke("ExtraEnemyFire", 1f);
     }
     /*void Fire()
     {

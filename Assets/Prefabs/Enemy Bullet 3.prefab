@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5954019436845907023}
   - component: {fileID: 1603411331036677269}
   - component: {fileID: 7699800461176142953}
+  - component: {fileID: -928805489954420420}
   m_Layer: 0
   m_Name: Enemy Bullet 3
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,3 +124,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-928805489954420420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734514253247920037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929b0a397a7df4f40ab62f6a95730de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
